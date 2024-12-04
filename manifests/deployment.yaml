@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rickygitopsdeploy
+  labels:
+    app: rickygitopsdeploy
+    kubernetes.azure.com/generator: devhub
+  namespace: namespace-workflow-1733304048601
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rickygitopsdeploy
+  template:
+    metadata:
+      labels:
+        app: rickygitopsdeploy
+    spec:
+      containers:
+        - name: rickygitopsdeploy
+          image: rickyaksclusterregistry.azurecr.io/image-workflow-1733304048601:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
